@@ -1,6 +1,11 @@
 class Api::V1::CategoriesController < ApplicationController
   def create
-    render json:{message:"mande ny create"}
+    category = Category.new(category_params)
+    if category.save
+      render json: {category: category}, status: :created
+    else
+      render json: {errors: category.errors.full_messages}, status: :unprocessable_entity
+    end
   end
 
   def index
@@ -11,9 +16,17 @@ class Api::V1::CategoriesController < ApplicationController
   def show
     category = Category.find_by(id:params[:id])
     if category
-      render json: {category:category}, status: 200
+      render json: {category:category}
     else 
       render json: {message:"Category doesn't exist"}, status: 400
     end
   end
+
+
+  private
+
+  def category_params
+    params.require(:category).permit(:title)
+  end
+
 end
