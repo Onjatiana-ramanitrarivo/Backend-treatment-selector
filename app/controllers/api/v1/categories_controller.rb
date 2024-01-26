@@ -1,4 +1,5 @@
 class Api::V1::CategoriesController < ApplicationController
+
   def create
     category = Category.new(category_params)
     if category.save
@@ -22,6 +23,10 @@ class Api::V1::CategoriesController < ApplicationController
     end
   end
 
+  def destroy 
+    destroy = Category.find(params[:id]).destroy
+    render status: :no_content
+  end
 
   private
 
