@@ -5,7 +5,7 @@ class Api::V1::TreatmentsController < ApplicationController
     if treatment.save
       render json: {treatment: treatment}, status: :created
     else 
-      render json: {errors: category.errors.full_messages}, status: :unprocessable_entity
+      render json: {errors: treatment.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
@@ -20,6 +20,15 @@ class Api::V1::TreatmentsController < ApplicationController
   def destroy 
     destroy = Treatment.find(params[:id]).destroy
     render status: :no_content
+  end
+
+  def update 
+    treatment = Treatment.find_by(id:params[:id])
+    if treatment.update(treatment_params)
+      render json: {treatment: treatment}, status: :ok
+    else 
+      render json: {errors: treatment.errors.full_messages}, status: :unprocessable_entity
+    end
   end
 
   

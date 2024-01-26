@@ -28,6 +28,16 @@ class Api::V1::CategoriesController < ApplicationController
     render status: :no_content
   end
 
+  def update 
+    category = Category.find_by(id:params[:id])
+    if category.update(category_params)
+      render json: {category: category}, status: :ok
+    else 
+      render json: {errors: category.errors.full_messages}, status: :unprocessable_entity
+    end
+  end
+
+
   private
 
   def category_params

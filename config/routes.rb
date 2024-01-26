@@ -7,8 +7,8 @@ Rails.application.routes.draw do
 
       get 'treatments' => 'treatments#index_all'
 
-      resources :categories, only: [:index, :show, :create, :destroy] do
-        resources :treatments, only: [:index, :create, :destroy]
+      resources :categories, only: [:index, :show, :create, :destroy, :update] do
+        resources :treatments, only: [:index, :create, :destroy, :update]
       end
     end
   end    
