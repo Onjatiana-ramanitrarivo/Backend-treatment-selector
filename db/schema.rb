@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_25_163122) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_26_062304) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,6 +18,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_25_163122) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "treatment_lines", force: :cascade do |t|
+    t.string "date"
+    t.string "patientName"
+    t.string "state"
+    t.bigint "treatment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["treatment_id"], name: "index_treatment_lines_on_treatment_id"
   end
 
   create_table "treatments", force: :cascade do |t|
@@ -30,5 +40,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_25_163122) do
     t.index ["category_id"], name: "index_treatments_on_category_id"
   end
 
+  add_foreign_key "treatment_lines", "treatments"
   add_foreign_key "treatments", "categories"
 end
