@@ -1,24 +1,52 @@
-# README
+# Project
+Treatment selector:
+An API for the application that allows a patient arriving at a clinic to choose the treatment they wish to receive.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Install
 
-Things you may want to cover:
+### Clone the repository
 
-* Ruby version
+```shell
+git clone https://github.com/Onjatiana-ramanitrarivo/Backend-treatment-selector.git
+cd backend-treatment-selector
+```
 
-* System dependencies
+### Check your Ruby version
 
-* Configuration
+```shell
+ruby -v
+```
 
-* Database creation
+The ouput should start with something like `ruby 3.3.0`
 
-* Database initialization
+If not, install the right ruby version using [rbenv]
 
-* How to run the test suite
+### Check your Rails version
 
-* Services (job queues, cache servers, search engines, etc.)
+```shell
+rails -v
+```
 
-* Deployment instructions
+The ouput should start with something like `Rails 7.1.3`
 
-* ...
+
+### Install dependencies
+
+Using [Bundler](https://github.com/bundler/bundler) and [Yarn](https://github.com/yarnpkg/yarn):
+
+```shell
+bundle && yarn
+```
+
+### Initialize the database
+
+```shell
+rails db:create db:migrate db:seed
+```
+
+
+## Serve
+
+```shell
+rails s
+```
